@@ -43,7 +43,7 @@ html, body {
     height: 100%;
     width: 100%;
     padding: 15px;
-    background-color: rgba(0, 0, 0);
+    background-color: rgba(0, 0, 0, .8);
     border-radius: 10px 10px 0px 0px;
 }
 
@@ -54,12 +54,12 @@ html, body {
 
 .display > .currentValue {
     font-size: 2.4em;
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(255, 221, 31, 0.95);
 }
 
 .buttons {
     border-radius: 5%;
-    padding: 0;
+    padding: 20px 8px 20px 8px;
     height: 100%;
     width: 100%;
     display: grid;
@@ -70,10 +70,10 @@ html, body {
 
 .buttons > button {
     cursor: pointer;
-    margin: 0;
+    margin: 8px 5px 8px 5px;
     padding: 0;
     outline: none;
-    border: 0px solid rgb(255, 255, 255);
+    border: 1px solid rgba(245, 205, 30, 0.13);
     border-radius: 2em 2em 2em 2em;
     font-size: 1.5em;
     background-color: rgba(253, 242, 181, 0.1);

@@ -22,17 +22,9 @@ function subtract (a, b) {
 	return a - b;
 }
 
-function sum(array) {
-	return array.reduce((total, current) => total + current, 0);
-}
 
 function multiply(a, b) {
     return a * b;
-}
-
-function multiplyArray (array) {
-	array.reduce((accu, val) => result = accu * val);
-	return result;
 }
 
 function divide(a,b) {
@@ -43,63 +35,86 @@ function power(a, b) {
 	return a**b;
 }
 
-function factorial(num) {
-	let i = num;
-	let total = num;
-	while (i>1) {
-		i--;
-		total *= i;
-	}
-	if (num === 0) {return 1};
-	return total;
-}
-
 //functions for buttons
+
 let num1 = '';
 let num2 = '';
 let num3 = '';
 let operator = '';
+let answer;
+let previousAnswer = '';
 const currentValue = document.querySelector('.currentValue');
 const previousValue = document.querySelector('.previousValue');
-const buttons = document.querySelectorAll('button');
-const clickButton = buttons.forEach(button => {
+const numberButtons = document.querySelectorAll('.numbers');
+const operandButtons = document.querySelectorAll('.operands');
+const equalsButton = document.querySelector('#equals');
+const clearButton = document.querySelector('#clear');
+const deleteButton = document.querySelector('#delete');
+
+
+numberButtons.forEach(button => {
     button.addEventListener("click", () => {
-        if (button.innerText === "DEL") {
-            let str = currentValue.innerText;
-            let str2 = str.slice(0, str.length-1);
-            currentValue.innerText = str2;
-            return;
+        if (operator.length<1 && previousValue.innerText.length<1) {
+        num1 += button.innerText;
+        currentValue.innerText = num1
         }
-        if (!isNaN(button.innerText) && operator.length<1) {
-            num1 += button.innerText;
-            currentValue.innerText = num1;}
-        if (isNaN(button.innerText) && operator.length<1) {
-            operator += button.innerText;
-            previousValue.innerText = num1;
-            currentValue.innerText = operator;
-        }
-        if (!isNaN(button.innerText) && operator.length==1) {
-            previousValue.innerText = num1 + ' ' + operator;
+        if (operator.length==1) {
             num2 += button.innerText;
-            currentValue.innerText = num2;
+            currentValue.innerText = num1 + ' ' + operator + ' ' + num2;
+            return
         }
-        if (button.innerText === "=") {
-            num3 = num1 + ' ' + operator + ' ' + num2
-            previousValue.innerText = num3;
-            let answer = operate(num1, operator, num2);
-            currentValue.innerText = answer;
+        if (previousValue.innerText.includes('=')) {
+            previousValue.innerText = previousAnswer;
+            num1 += button.innerText;
+            currentValue.innerText = num1;
         }
-        if (button.innerText === "C") {
-            num1 = '';
-            num2 = '';
-            num3 = '';
-            operator = '';
-            previousValue.innerText = '';
-            currentValue.innerText = '';
-        }
-    })});
+})})
+
+operandButtons.forEach(button => {
+    button.addEventListener("click", () => {
+    if (operator.length<1 && num1.length>0) {
+        operator += button.innerText;
+        currentValue.innerText = num1 + ' ' + operator;}
+    if (operator.length<1 && num1.length<1 && answer.toString().length>0) {
+        previousValue.innerText = previousAnswer;
+        num1 = answer;
+        operator += button.innerText;
+        currentValue.innerText = num1 + ' ' + operator;
+    }
+})})
+
+equalsButton.addEventListener("click", () => {
+    if (num1.length<1) return;
+    num3 = num1 + ' ' + operator + ' ' + num2 + ' ' + '=';
+    previousValue.innerText = num3;
+    answer = operate(num1, operator, num2);
+    currentValue.innerText = answer;
+    previousAnswer = num1 + ' ' + operator + ' ' + num2 + ' = ' + answer
+    num1 = '';
+    num2 = '';
+    operator = '';
+})
+
+clearButton.addEventListener("click", () => {
+    num1 = '';
+    num2 = '';
+    num3 = '';
+    operator = '';
+    answer = '';
+    previousAnswer = '';
+    previousValue.innerText = '';
+    currentValue.innerText = '';
+})
+
+deleteButton.addEventListener("click", () => {
+    let str = currentValue.innerText;
+        let str2 = str.slice(0, str.length-1);
+        currentValue.innerText = str2;
+        return;
+})
 
 
+//function for keyboard
 /*
 window.addEventListener("keydown", (e) => {keyPress(e)})
 

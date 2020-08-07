@@ -1,0 +1,141 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Kodchasan', san-serif;
+    position: relative;
+}
+
+html, body {
+    margin: 0;
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(circle, rgb(255, 250, 240)23em, rgb(143, 145, 255)80em);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.main {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+.calculator {
+    padding: 0;
+    display: grid;
+    grid-template-rows: 25% 75%;
+    place-items: right;
+    height: 33em;
+    width: 17em;
+    place-items: center;
+    border: 0;
+    border-radius: 20px 20px 20px 20px;
+    background-color: rgb(250, 249, 249);
+    box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.2),
+                inset -5px -5px 5px 1px rgba(0, 0, 0, 0.07),
+                inset 5px 5px 5px 1px #ffffff,
+                inset -5px -5px 5px 0px rgb(255, 255, 255),
+                20px 20px 30px 5px rgba(0, 0, 0, .4),
+                -5px -5px 5px 1px rgb(228, 228, 228, .3);
+}
+
+.display {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    word-wrap: break-word;
+    word-break: break-all;
+    grid-template-rows: minmax(0, 25%) minmax(0,75%);
+    grid-template-columns: minmax(0, 100%);
+    row-gap: 5px;
+    height: 90%;
+    width: 88%;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(122, 122, 122, 0.055);
+    box-shadow: inset 2px 2px 5px .3px #c0c0c0, inset -2px -2px 5px .5px rgb(255, 255, 234);
+    border-radius: 15px 15px 15px 15px;
+}
+
+.display > .previousValue {
+    font-size: 1.3em;
+    color: rgb(146, 146, 146);
+}
+
+.display > .currentValue {
+    font-size: 2.4em;
+    color: rgba(56, 56, 56, 0.95);
+    text-shadow: -1px -1px 2px #fff, 3px 3px 2px rgba(0, 0, 0, 0.4);
+}
+
+.buttons {
+    border-radius: 5%;
+    padding: 20px 8px 20px 8px;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(5, 20%);
+    grid-template-columns: repeat(4, 25%);
+    place-content: center;
+
+    /*disable select and highlight*/
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;      
+    user-select: none;
+}
+
+.buttons > button {
+    cursor: pointer;
+    margin: 8px 5px 8px 5px;
+    padding: 0;
+    outline: none;
+    border: 0;
+    border-radius: 2em 2em 2em 2em;
+    font-size: 1.5em;
+    background-color: rgba(253, 253, 253, 0.904);
+    box-shadow: -3px -3px 10px 2px #fff,
+                2px 2px 3px 1px rgba(0, 0, 0, 0.2),
+                inset 4px 4px 10px -2px rgba(124, 124, 124, 0.15),
+                inset -4px -4px 10px 0px white;
+}
+
+.buttons > .numbers {
+    color: rgb(71, 71, 71);
+}
+
+.buttons > .operands {
+    color: blue;
+}
+
+.buttons > #equals {
+    color: rgb(255, 0, 255);
+}
+
+.buttons > #clear {
+    color: rgb(255, 145, 0);
+}
+
+.buttons > #percent {
+    font-size: 1.2em;
+}
+
+.two-wide {
+    grid-column: span 2;
+}
+
+.two-long {
+    grid-row: span 2;
+}
+
+.buttons > button:hover {
+    color: rgb(255, 0, 255);
+}
+
+.buttons > button:active {
+    background-color: rgba(236, 236, 236, 0.904);
+    box-shadow: inset 4px 4px 6px 1px rgba(124, 124, 124, 0.3),
+                inset -4px -4px 6px 1px white;
+}
+

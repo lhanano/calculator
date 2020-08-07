@@ -9,6 +9,7 @@ const operate = (num1, operator, num2) => {
         case 'x': result = Number(num1) * Number(num2);
         break;
         case '÷': result = Number(num1) / Number(num2);
+        break;
         case '%': result = ((Number(num1) * 0.01) * (Number(num2)));
     }
     return result;
@@ -54,17 +55,25 @@ operandButtons.forEach(button => {
     button.addEventListener("click", () => {
     if (operator.length<1 && num1.length>0) {
         operator += button.innerText;
-        currentValue.innerText = num1 + ' ' + operator;}
-    if (operator.length<1 && num1.length<1 && answer.toString().length>0) {
+        currentValue.innerText = num1 + ' ' + operator;
+    } if (operator.length<1 && num1.length<1 && answer.toString().length>0) {
         previousValue.innerText = previousAnswer;
         num1 = answer;
         operator += button.innerText;
+        currentValue.innerText = num1 + ' ' + operator;
+    } if (operator.length == 1 && num2.length>0) {
+        answer = operate(num1, operator, num2);
+        previousAnswer = num1 + ' ' + operator + ' ' + num2 + ' = ' + answer
+        previousValue.innerText = previousAnswer;
+        num1 = answer;
+        num2 = ''
+        operator = button.innerText;
         currentValue.innerText = num1 + ' ' + operator;
     }
 })})
 
 equalsButton.addEventListener("click", () => {
-    if (num1.length<1) return;
+    if (operator.length<1) return;
     num3 = num1 + ' ' + operator + ' ' + num2 + ' ' + '=';
     previousValue.innerText = num3;
     answer = operate(num1, operator, num2);
@@ -72,6 +81,7 @@ equalsButton.addEventListener("click", () => {
     previousAnswer = num1 + ' ' + operator + ' ' + num2 + ' = ' + answer
     num1 = '';
     num2 = '';
+    num3 = '';
     operator = '';
 })
 

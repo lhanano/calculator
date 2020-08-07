@@ -9,7 +9,7 @@ html, body {
     font-size: 16px;
     height: 100%;
     width: 100%;
-    background: radial-gradient(circle, rgb(255, 250, 240)23em, rgb(143, 145, 255)80em);
+    background: radial-gradient(circle, rgb(255, 250, 240)23em, rgb(133, 124, 255)38em);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -43,16 +43,18 @@ html, body {
 .display {
     display: flex;
     align-items: flex-end;
+    justify-content: space-evenly;
     flex-direction: column;
     word-wrap: break-word;
     word-break: break-all;
+    overflow: auto;
     grid-template-rows: minmax(0, 25%) minmax(0,75%);
     grid-template-columns: minmax(0, 100%);
-    row-gap: 5px;
-    height: 90%;
+    row-gap: 0px;
+    height: 98%;
     width: 88%;
-    margin-top: 30px;
-    padding: 20px;
+    margin-top: 29px;
+    padding: 12px 20px 12px 20px;
     background-color: rgba(122, 122, 122, 0.055);
     box-shadow: inset 2px 2px 5px .3px #c0c0c0, inset -2px -2px 5px .5px rgb(255, 255, 234);
     border-radius: 15px 15px 15px 15px;
